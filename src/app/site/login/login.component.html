@@ -1,3 +1,31 @@
-<p>
-  login works!
-</p>
+<div class="login-wrapper">
+  <form class="login">
+
+    <div class="logo">
+      <a [routerLink]="['/home']" ><img class="logo-image" src="https://res.cloudinary.com/max-ng/maxweb_img/logo_gold.png"></a>
+    </div>
+    <div class="mx-auto">
+      Welcome back
+    </div>
+
+
+    <input class="username" type="text" id="login_email" placeholder="Email"><br>
+    <input class="password" type="password" id="login_password" placeholder="Password">
+
+    <div class="checkbox">
+      <input type="checkbox" id="rememberme">
+      <label for="rememberme">
+                    Remember me
+                </label>
+    </div>
+
+    <div *ngIf class="error active">
+      Invalid user name or password
+    </div>
+
+    <button type="submit" class="btn" id="gold">Login</button>
+
+    <a [routerLink]="['/signup']" class="signup">Don't have an account? Sign up</a>
+
+  </form>
+</div>
