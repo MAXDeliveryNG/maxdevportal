@@ -1,0 +1,50 @@
+@import "~scss/variables.scss";
+
+.site-header
+{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: transparent;
+}
+
+.logo
+{
+    a {
+        display: block;
+        img {
+            display: block;
+            max-width: 100%;
+            height: 70px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+    } 
+}
+
+.navigation-menu
+{
+    ul
+    {
+        margin-top: 15px;
+        
+        li 
+        {
+            float: left;
+            list-style: none;
+
+            a 
+            {
+                display: block;
+                padding: 10px 15px;
+                text-transform: uppercase;
+                color: #FFF;
+                text-decoration: none;
+            }
+
+            &:hover {
+                border-bottom: 3px solid $brand-primary;
+            }
+        }
+    }
+}
