@@ -1,4 +1,4 @@
-<header class="site-header visible-md visible-lg">
+<header class="site-header">
   <div class="container">
     <div class="row">
       <div class="col-lg-2 col-md-2 logo">
@@ -9,14 +9,14 @@
 
       <div class="col-lg-8 col-md-10 navigation-menu">
         <ul class="clearfix">
-          <li><a>Home</a></li>
+          <li><a [routerLink]="['/']">Home</a></li>
           <li><a href="http://docs.maxv1.apiary.io/" target="_blank">Documentation</a></li>
           <li><a>Register</a></li>
         </ul>
       </div>
 
       <div class="col-lg-2 col-md-2 navigation-left">
-        <a class="btn btn-default" style="margin-top: 15px;">Login</a>
+        <a class="btn btn-default" style="margin-top: 15px;" [routerLink]="['/login']">Login</a>
       </div>
     </div>
   </div>

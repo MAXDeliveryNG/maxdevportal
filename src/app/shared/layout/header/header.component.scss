@@ -1,3 +1,5 @@
+@import "~scss/variables.scss";
+
 .site-header
 {
     position: absolute;
@@ -36,6 +38,12 @@
                 display: block;
                 padding: 10px 15px;
                 text-transform: uppercase;
+                color: #FFF;
+                text-decoration: none;
+            }
+
+            &:hover {
+                border-bottom: 3px solid $brand-primary;
             }
         }
     }
