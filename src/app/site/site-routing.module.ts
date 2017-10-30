@@ -15,7 +15,7 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
         data: {
-            title: 'Login'
+            title: 'MAX API | Login'
         }
     }
 ]
