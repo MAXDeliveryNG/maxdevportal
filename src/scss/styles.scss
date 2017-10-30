@@ -1,13 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'variables.scss';
+@import 'buttons.scss';
 
-.btn-default 
-{
-    border-color: $brand-primary !important;
-    color: $brand-primary !important;
-
-    &:hover {
-        background: $brand-primary !important;
-        color: #FFF !important;
-    }
+a {
+    color: $brand-primary;
 }
