@@ -5,3 +5,30 @@
     background-color: #FFF;
     min-height: 100px;
 }
+
+.footer-links
+{
+    li
+    {
+        a {
+            color: #333;
+            text-decoration: none;
+            &:hover {
+                color: $brand-primary;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-links
+    {
+        margin-top: 25px;
+        li {
+            float: left;
+            a {
+                padding: 10px 15px;
+            }
+        }
+    }
+}

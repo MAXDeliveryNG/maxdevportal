@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
 
 import { HomeComponent } from './home.component';
 import {FooterComponent} from '../../shared/layout/footer/footer.component';
@@ -10,9 +11,13 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent, FooterComponent, HeaderComponent  ]
-    })
-    .compileComponents();
+      declarations: [ HomeComponent, FooterComponent, HeaderComponent  ],
+      imports: [RouterTestingModule.withRoutes([{
+        path: '',
+      component: HeaderComponent
+    }])
+ ]
+}).compileComponents();
   }));
 
   beforeEach(() => {
