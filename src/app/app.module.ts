@@ -16,7 +16,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+
   ],
   providers: [
     Title,
