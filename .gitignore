@@ -43,3 +43,8 @@ testem.log
 Thumbs.db
 *.log
 .env
+.vs/ProjectSettings.json
+.vs/ProjectSettings.json
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+.vs/maxdevportal/v15/.suo
