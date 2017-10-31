@@ -18,7 +18,7 @@ curl {$SLACK_URL} -X POST \
       "fallback": "Required plain-text summary of the attachment.",
       "color": "#${COLOR}",
       "pretext": "${TITLE} -- <${CIRCLE_COMPARE_URL}|$(git log -1 --pretty=%B)>",
-      "author_name": "MAX Analytics Server",
+      "author_name": "MAX Devportal Staging Server",
       "title": "CircleCI Build ${CIRCLE_BUILD_NUM}",
       "title_link": "${CIRCLE_BUILD_URL}",
       "text": "\`\`\`${LOG_TEXT}\`\`\`",
