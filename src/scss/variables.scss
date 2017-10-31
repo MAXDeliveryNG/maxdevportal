@@ -1,3 +1,9 @@
+$breakpoints: (
+    'small'  : ( min-width:  767px ),
+    'medium' : ( min-width:  992px ),
+    'large'  : ( min-width: 1200px )
+);
+
 $brand-primary: #DAA520;
 $brand-secondary: #191818;
 $font:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
