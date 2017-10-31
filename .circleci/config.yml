@@ -33,8 +33,19 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
+      
+      - run:
+          name: Setup Test Environment
+          command: bash .circleci/setup.sh
+
       # run tests!
       - run: yarn test
+
+      - deploy:
+        name: Deploy to staging
+        command: |
+          if [ "${CIRCLE_BRANCH}" == "staging"]; then
+            git push staging master
+          fi
 
 
