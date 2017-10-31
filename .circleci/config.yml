@@ -44,7 +44,7 @@ jobs:
       - deploy:
           name: Deploy to staging
           command: |
-            if [ "${CIRCLE_BRANCH}" == "staging"]; then
+            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
               git push staging master
             fi
 
