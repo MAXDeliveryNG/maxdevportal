@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "server": "node start",
-    "start": "ng serve",
+    "start": "pm2 restart process.yml",
     "build": "ng build",
     "test": "ng test --single-run",
     "lint": "ng lint",
