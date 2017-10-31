@@ -11,12 +11,9 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
       imports: [
-        RouterTestingModule.withRoutes([{
-          path: '',
-        component: HeaderComponent
-      }])
-   ]
-  }).compileComponents();
+        RouterTestingModule
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
