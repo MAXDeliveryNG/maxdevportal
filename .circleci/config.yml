@@ -45,7 +45,11 @@ jobs:
           name: Deploy to staging
           command: |
             if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-              git push staging staging
+              git push staging staging >> /tmp/logs/deployment_report 2>&1
+              cat /tmp/logs/deployment_report
+              bash .circleci/slack.sh /tmp/logs/deployment_report deploy
             fi
-
+      - store_artifacts:
+          path: /tmp/logs
+          destination: logs
 
