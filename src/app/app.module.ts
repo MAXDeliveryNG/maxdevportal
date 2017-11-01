@@ -9,7 +9,7 @@ import { JwtInterceptor } from './shared/http/jwt.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './site/signup/signup.component';
 
 @NgModule({
   declarations: [
