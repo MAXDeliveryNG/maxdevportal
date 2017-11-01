@@ -1,0 +1,58 @@
+@import "~scss/variables.scss";
+
+.login-wrapper{
+  // background-image: url("../../assets/login-bkg3.jpg");
+  background-repeat: repeat;
+
+}
+.signup,
+.welcome,
+.logo-image{
+  margin: auto;
+}
+.mx-auto,
+.logo-image{
+  display: block;
+}
+.mx-auto,
+#login_email{
+  margin-bottom: 30px;
+}
+
+.mx-auto,
+#gold{
+  color: $brand-secondary;
+}
+
+.checkbox{
+  margin-top: 20px;
+}
+.signup{
+  color: $brand-primary;
+}
+.welcome{
+  font-weight: 10px;
+  margin-bottom: 50px;
+  margin-left: 60px;
+}
+
+.logo-image {
+  margin-top: 30%;
+  height: 80px;
+
+}
+.mx-auto {
+  margin: 0;
+  width: 200px;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 25px;
+  font-family: $font;
+}
+
+#gold{
+  background-color: $brand-primary;
+  border-color: $brand-primary;
+  margin-top: 20px;
+}
+

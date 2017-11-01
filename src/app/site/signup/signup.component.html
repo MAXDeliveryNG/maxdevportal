@@ -1,0 +1,28 @@
+<div class="login-wrapper">
+  <form class="login">
+
+    <div class="logo">
+     <a [routerLink]="['/home']" ><img class="logo-image" src="https://res.cloudinary.com/max-ng/maxweb_img/logo_gold.png"></a>
+    </div>
+    <div class="mx-auto">
+      Get started
+    </div>
+
+    <input class="firstname" type="text" id="login_email" placeholder="First Name"><br>
+    <input class="lastname" type="text" id="login_email" placeholder="Last Name"><br>
+    <input class="phonenumber" type="text" id="login_email" placeholder="Phone Number"><br>
+    <input class="username" type="text" id="login_email" placeholder="Email"><br>
+    <input class="password" type="password" id="login_password" placeholder="Password">
+
+
+
+    <div *ngIf class="error active">
+      Invalid user name or password
+    </div>
+
+    <button type="submit" class="btn" id="gold">Sign Up</button>
+
+    <a [routerLink]="['/login']" class="signup">Already have an account? Sign in</a>
+
+  </form>
+</div>
