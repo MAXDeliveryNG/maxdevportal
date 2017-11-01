@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { JwtHelper } from 'angular2-jwt';
 
+import { JwtInterceptor } from './shared/http/jwt.interceptor';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -16,10 +18,10 @@ import { AppComponent } from './app.component';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-
+    AppRoutingModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     Title,
     JwtHelper
   ],
