@@ -9,12 +9,12 @@ import { JwtInterceptor } from './shared/http/jwt.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignupComponent } from './site/signup/signup.component';
+
+import { JwtService } from './services';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SignupComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +25,8 @@ import { SignupComponent } from './site/signup/signup.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     Title,
-    JwtHelper
+    JwtHelper,
+    JwtService
   ],
   bootstrap: [AppComponent]
 })
