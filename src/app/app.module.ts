@@ -12,15 +12,11 @@ import { AuthGuard } from './shared/guards/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignupComponent } from './site/signup/signup.component';
-import { LoginComponent } from './site/login/login.component';
 import { SessionService } from './services';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SignupComponent,
-    LoginComponent
+    AppComponent    
   ],
   imports: [
     BrowserModule,
