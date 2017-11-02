@@ -1,2 +1,2 @@
-export * from './jwt.service';
+export * from './session.service';
 export * from './auth.service';
