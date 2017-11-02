@@ -1,12 +1,14 @@
 import { ViewChild,Component, OnInit, OnDestroy } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
-import { AuthService } from '../../services';
+import { SessionService, AuthService } from '../../services';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
@@ -20,7 +22,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     password: null
   }
 
-  constructor(private auth: AuthService) { }
+  constructor(
+    private auth: AuthService, 
+    private session: SessionService, 
+    private router: Router) { }
 
   submitForm() {
     this.loading = true;
@@ -36,6 +41,10 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.error = response.message;
         } else if (response.status == 'success') {
           this.error = null;
+          this.session.setUser(response.data.user);
+          this.session.setToken(response.data.access_token);
+
+          this.router.navigate(['/dashboard']);
         }
       },
       err => {
