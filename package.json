@@ -25,7 +25,7 @@
     "@angular/router": "^4.4.6",
     "@types/lodash": "^4.14.72",
     "@webcomponents/custom-elements": "1.0.0",
-    "angular-2-local-storage": "^1.0.1",
+    "angular-persistence": "^1.0.1",
     "angular2-jwt": "^0.2.3",
     "angular2-notifications": "^0.7.7",
     "body-parser": "^1.17.2",
