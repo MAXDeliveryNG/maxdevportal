@@ -7,11 +7,12 @@ import { PersistenceModule } from 'angular-persistence'
 import { JwtHelper } from 'angular2-jwt';
 
 import { JwtInterceptor } from './shared/http/jwt.interceptor';
+import { AuthGuard } from './shared/guards/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { JwtService } from './services';
+import { SessionService } from './services';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { JwtService } from './services';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     Title,
     JwtHelper,
-    JwtService
+    SessionService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
