@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
-import { JwtService, AuthService } from '../services';
+import { SessionService, AuthService } from '../services';
 
 @NgModule({
   imports: [
@@ -22,6 +22,6 @@ import { JwtService, AuthService } from '../services';
     SiteRoutingModule
   ],
   declarations: [HomeComponent, LoginComponent, SignupComponent],
-  providers: [JwtService, AuthService]
+  providers: [SessionService, AuthService]
 })
 export class SiteModule { }
