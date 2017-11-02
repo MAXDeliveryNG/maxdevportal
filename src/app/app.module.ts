@@ -2,6 +2,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PersistenceModule } from 'angular-persistence'
 
 import { JwtHelper } from 'angular2-jwt';
 
@@ -20,6 +21,7 @@ import { JwtService } from './services';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    PersistenceModule,
     AppRoutingModule
   ],
   providers: [
