@@ -24,13 +24,13 @@
   </div>
 </clr-header>
 
-<clr-modal #logoutModal [(clrModalOpen)]="logoutModalVisible" [clrModalClosable]="false" [clrModalSize]="'sm'">
+<clr-modal #logoutModal [(clrModalOpen)]="logoutModalVisible" [clrModalSize]="'sm'">
     <h3 class="modal-title">Logout</h3>
     <div class="modal-body">
         <p>Are you sure you want to logout?.</p>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-default" type="button">Cancel</button>
+        <button class="btn btn-default" type="button" (click)="hideLogoutModal()">Cancel</button>
         <button type="button" class="btn btn-primary" (click)="logout()">Yes</button>
     </div>
 </clr-modal>

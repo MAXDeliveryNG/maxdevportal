@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ClarityModule } from 'clarity-angular';
 
@@ -14,6 +15,7 @@ import { HeaderComponent } from './layout/header/header.component'
     CommonModule,
     RouterModule,
     ClarityModule.forRoot(),
+    SharedModule,
     DashboardRoutingModule
   ],
   declarations: [DashboardComponent, HeaderComponent],
