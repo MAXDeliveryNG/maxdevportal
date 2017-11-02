@@ -5,18 +5,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PersistenceModule } from 'angular-persistence'
 
 import { JwtHelper } from 'angular2-jwt';
+import { AuthService } from './services'
 
 import { JwtInterceptor } from './shared/http/jwt.interceptor';
 import { AuthGuard } from './shared/guards/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { SignupComponent } from './site/signup/signup.component';
+import { LoginComponent } from './site/login/login.component';
 import { SessionService } from './services';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,11 +30,13 @@ import { SessionService } from './services';
     AppRoutingModule
   ],
   providers: [
+
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     Title,
     JwtHelper,
     SessionService,
-    AuthGuard
+    AuthGuard,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
