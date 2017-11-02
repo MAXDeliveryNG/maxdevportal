@@ -7,9 +7,10 @@ import { ClarityModule } from 'clarity-angular';
 import { SharedModule } from '../shared/shared.module';
 import { SiteRoutingModule } from './site-routing.module';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
-import { AuthService } from '../services';
+import { JwtService, AuthService } from '../services';
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import { AuthService } from '../services';
     ClarityModule.forRoot(),
     SiteRoutingModule
   ],
-  declarations: [HomeComponent, LoginComponent],
-  providers: [AuthService]
+  declarations: [HomeComponent, LoginComponent, SignupComponent],
+  providers: [JwtService, AuthService]
 })
 export class SiteModule { }
