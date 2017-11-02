@@ -8,7 +8,7 @@ import 'clarity-icons';
 import 'clarity-icons/shapes/core-shapes';
 
 @Component({
-  selector: 'app-header',
+  selector: 'dashboard-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
