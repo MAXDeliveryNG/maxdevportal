@@ -26,7 +26,6 @@ import { SessionService } from './services';
     AppRoutingModule
   ],
   providers: [
-
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     Title,
     JwtHelper,

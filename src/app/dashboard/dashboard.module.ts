@@ -4,21 +4,31 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ClarityModule } from 'clarity-angular';
+import { MomentModule, DateFormatPipe } from 'angular2-moment';
 
-import { SessionService } from '../services'
+import { SessionService, UserService, OrderService } from '../services'
 
 import { DashboardComponent } from './dashboard.component';
-import { HeaderComponent } from './layout/header/header.component'
+import { DeliveriesComponent } from './deliveries/deliveries.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     ClarityModule.forRoot(),
+    MomentModule,
     SharedModule,
     DashboardRoutingModule
   ],
-  declarations: [DashboardComponent, HeaderComponent],
-  providers: [SessionService]
+  declarations: [
+    DashboardComponent, 
+    DeliveriesComponent
+  ],
+  providers: [
+    DateFormatPipe,
+    SessionService,
+    UserService,
+    OrderService
+  ]
 })
 export class DashboardModule { }

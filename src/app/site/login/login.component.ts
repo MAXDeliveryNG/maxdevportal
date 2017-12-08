@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.session.setUser(response.data.user);
           this.session.setToken(response.data.access_token);
 
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard/deliveries']);
         }
       },
       err => {

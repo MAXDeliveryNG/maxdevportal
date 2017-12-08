@@ -10,10 +10,10 @@ export class JwtInterceptor implements HttpInterceptor {
     constructor(private session: SessionService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (this.session.getToken()) {
+        if (this.session.readToken()) {
             const request = req.clone({
                 setHeaders: {
-                    Authorization: `Bearer ${this.session.getToken()}`
+                    Authorization: `Bearer ${this.session.readToken()}`
                 }
             });
             return next.handle(request);

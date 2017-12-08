@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
 
   @ViewChild('logoutModal') logoutModal: Modal;
   user: User;
-  logoutModalVisible: boolean = false;
 
   constructor(private session: SessionService, private router: Router) { }
 
