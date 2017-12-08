@@ -1,9 +1,65 @@
 <clr-main-container>
-  <dashboard-header></dashboard-header>
   <div class="content-container">
     <main class="content-area">
         <router-outlet></router-outlet>
     </main>
+
+    <clr-vertical-nav [clrVerticalNavCollapsible]="navCollasped" [clr-nav-level]="1">
+      <div class="branding">
+        <a [routerLink]="['/dashboard']">
+          <img src="https://res.cloudinary.com/max-ng/image/upload/v1471947045/maxweb_img/logo_gold.png" alt="max">
+        </a>
+      </div>
+
+      <nav>
+        <clr-vertical-nav-group>
+            <a clrVerticalNavLink>
+                <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
+                {{ user.full_name }}
+            </a>
+            <clr-vertical-nav-group-children>
+                <a clrVerticalNavLink routerLinkActive="active" routerLink="/dashboard/settings">
+                    Settings
+                </a>
+                <a clrVerticalNavLink routerLinkActive="active" routerLink="/dashboard/profile">
+                    Profile
+                </a>
+            </clr-vertical-nav-group-children>
+        </clr-vertical-nav-group>
+      </nav>
+
+      <nav>
+        <a clrVerticalNavLink [routerLink]="['/dashboard/deliveries']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact:false }">
+            <clr-icon shape="truck" class="is-solid" clrVerticalNavIcon></clr-icon>
+            Deliveries           
+        </a>
+        <a clrVerticalNavLink [routerLink]="['/dashboard/apps']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <clr-icon shape="applications" class="is-solid" clrVerticalNavIcon></clr-icon>
+            Apps      
+        </a>
+        <a clrVerticalNavLink href="http://docs.maxv1.apiary.io/" target="_blank">
+            <clr-icon shape="info-standard" class="is-solid" clrVerticalNavIcon></clr-icon>
+            Documentation      
+        </a>
+      </nav>
+
+      <div class="logout" (click)="showLogoutModal()">
+          <a>
+            <clr-icon shape="logout"></clr-icon>                        
+            Logout
+          </a>
+      </div>
+    </clr-vertical-nav>
+
+    <clr-modal #logoutModal [clrModalSize]="'sm'">
+        <h3 class="modal-title">Logout</h3>
+        <div class="modal-body">
+            <p>Are you sure you want to logout?.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default" type="button" (click)="hideLogoutModal()">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="logout()">Yes</button>
+        </div>
+    </clr-modal>
   </div>
-  <app-footer></app-footer>
 </clr-main-container>

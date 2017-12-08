@@ -10,3 +10,24 @@ a {
 .txt-center {
     text-align: center;
 }
+
+.nav .nav-item.active .nav-link {
+    box-shadow: inset 0 -3px 0 $brand-primary !important;
+}
+
+.nav .nav-link:hover {
+    box-shadow: inset 0 -3px 0 darken($brand-primary, 10%) !important;
+}
+
+.clr-vertical-nav {
+    .nav-group-content:hover, .nav-group-content.active {
+        background-color: $brand-secondary !important;
+    }
+
+    .nav-group-trigger, .nav-trigger {
+        padding: 5px 0px 0px !important;
+    }
+    .nav-content { 
+        position: relative;
+    }
+}

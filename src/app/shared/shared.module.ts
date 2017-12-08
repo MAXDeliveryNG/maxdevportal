@@ -14,7 +14,10 @@ import { FooterComponent } from './layout/footer/footer.component';
     HeaderComponent,
     FooterComponent
   ],
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [
+    HeaderComponent, 
+    FooterComponent
+  ],
   providers: []
 })
 export class SharedModule { }

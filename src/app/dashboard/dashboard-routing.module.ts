@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
+import { DeliveriesComponent } from './deliveries/deliveries.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'deliveries',
+        component: DeliveriesComponent
+      }
+    ]
   }
 ]
 

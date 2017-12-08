@@ -29,6 +29,11 @@ export class SessionService {
     return token ? this.jwtHelper.decodeToken(token) : false;
   }
 
+  readToken(): string {
+    let token = this.container.get('access_token');
+    return token;
+  }
+
   check(): boolean {
     let token = this.container.get('access_token');
     return token && !this.jwtHelper.isTokenExpired(token) ? true : false;
