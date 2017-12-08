@@ -10,6 +10,7 @@ import { SessionService, UserService, OrderService } from '../services'
 
 import { DashboardComponent } from './dashboard.component';
 import { DeliveriesComponent } from './deliveries/deliveries.component';
+import { HeaderComponent } from './layout/header/header.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { DeliveriesComponent } from './deliveries/deliveries.component';
     DashboardRoutingModule
   ],
   declarations: [
+    HeaderComponent,
     DashboardComponent, 
     DeliveriesComponent
   ],
