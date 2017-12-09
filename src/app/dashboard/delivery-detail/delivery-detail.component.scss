@@ -1,0 +1,38 @@
+@import '~scss/mixins.scss';
+
+.delivery-map-card {
+    .card-block {
+        padding: 0;
+    }
+}
+agm-map {
+    height: 400px;
+}
+
+.info-block
+{
+    .name {
+        font-weight: bold;
+    }
+}
+
+.champion-block {
+
+    .champion-image, .champion-details {
+       float: left;
+    }
+
+    .champion-image {
+        width: 30%;
+        img {
+            display: block;
+            max-width: 100%;
+            @include border-radius(100%);
+            padding: 15px;
+        }
+    }
+
+    .champion-details {
+        width: 70%;
+    }
+}

@@ -19,12 +19,12 @@
         <clr-dg-column>Total (NGN)</clr-dg-column>
         <clr-dg-column>Status</clr-dg-column>
 
-        <clr-dg-row *ngFor="let order of orders">
+        <clr-dg-row *ngFor="let order of orders" (click)="onRowSelected(order)">
           <clr-dg-cell>{{ order.created_at | amDateFormat:'D MMM YYYY' }}</clr-dg-cell>
           <clr-dg-cell>{{ order.sender_name }}</clr-dg-cell>
           <clr-dg-cell>{{ order.recipient_name }}</clr-dg-cell>
           <clr-dg-cell>{{ order.billed_charge | number:"1.2-2" }}</clr-dg-cell>    
-          <clr-dg-cell>{{ order.order_status[0].status }}</clr-dg-cell>
+          <clr-dg-cell class="status-indicator {{ order.order_status[0].status }}">{{ order.order_status[0].status | uppercase }}</clr-dg-cell>
         </clr-dg-row>
 
         <clr-dg-footer>
