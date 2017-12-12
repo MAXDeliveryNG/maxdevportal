@@ -1,5 +1,5 @@
 import { ViewChild, Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService, SessionService } from 'app/services';
 import { User } from 'app/models/responses';
 import { State, DatagridPagination } from 'clarity-angular';
@@ -8,6 +8,9 @@ import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/takeUntil';
 import { Pageable } from 'app/shared/pagable';
+
+import 'clarity-icons';
+import 'clarity-icons/shapes/essential-shapes';
 
 @Component({
   selector: 'app-deliveries',
@@ -27,6 +30,7 @@ export class DeliveriesComponent extends Pageable implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private session: SessionService,
     private userService: UserService
   ) { 
@@ -35,6 +39,10 @@ export class DeliveriesComponent extends Pageable implements OnInit, OnDestroy {
 
   private toMilliseconds(value) {
     return value * 1000;
+  }
+
+  onRowSelected(order) {
+    this.router.navigate(['/dashboard/deliveries', order.id]);
   }
 
   refresh(state: State) {

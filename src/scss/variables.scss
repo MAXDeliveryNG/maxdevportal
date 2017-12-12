@@ -6,4 +6,12 @@ $breakpoints: (
 
 $brand-primary: #DAA520;
 $brand-secondary: #191818;
+
+$order-unassigned: #aeaeae;
+$order-assigned: #329acf;
+$order-acknowledged: darken($order-assigned, 15%);
+$order-delivered: #6b8e23;
+$order-arrived-delivery: lighten($order-delivered, 10%);
+$order-cancelled: #a52a2a;
+
 $font:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
