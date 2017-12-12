@@ -36,7 +36,18 @@ export class DeliveryDetailComponent implements OnInit {
           .map((response: any) => {
             response.data.delivery_address.coordinates = GeoUtils.toLatLngObject(response.data.delivery_address.coordinates);
             response.data.pickup_address.coordinates = GeoUtils.toLatLngObject(response.data.pickup_address.coordinates);
-            console.log(response.data);
+
+            response.data.pickup_window.date = response.data.pickup_window.date * 1000;
+            response.data.created_at = response.data.created_at * 1000;
+
+            return response;
+          })
+          .map((response: any) => {
+            response.data.order_status.map(status => {
+              status.created_at = status.created_at * 1000;
+              status.status = status.status.toUpperCase();
+              return status;
+            })
             return response;
           })
           .takeUntil(this.cancel$);
