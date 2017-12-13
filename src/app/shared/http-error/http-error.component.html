@@ -1,0 +1,8 @@
+<div class="http-error-container" *ngIf="hide">
+  <div class="action">
+    <div class="action-message">
+      <h3>Error loading data. Please click the button below to try again.</h3>          
+    </div>
+    <button class="btn primary" (click)="performButtonAction()">{{ buttonText }}</button>
+  </div>
+</div>
