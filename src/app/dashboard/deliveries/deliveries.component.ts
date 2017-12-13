@@ -9,9 +9,6 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/takeUntil';
 import { Pageable } from 'app/shared/pagable';
 
-import 'clarity-icons';
-import 'clarity-icons/shapes/essential-shapes';
-
 @Component({
   selector: 'app-deliveries',
   templateUrl: './deliveries.component.html',

@@ -11,7 +11,7 @@ export class AppService {
 
   create(body: object) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post(this.baseUrl, body, { headers });
+    return this.httpClient.post<any>(this.baseUrl, body, { headers });
   }
 
   read(id: string, options?: object) {
@@ -39,6 +39,6 @@ export class AppService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const url = `${this.baseUrl}/${id}`;
 
-    return this.httpClient.delete(url, { headers });
+    return this.httpClient.delete<any>(url, { headers });
   }
 }

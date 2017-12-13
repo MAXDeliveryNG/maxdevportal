@@ -1,12 +1,13 @@
-<ng-template #loading>
-  <div class="spinner-container">
-      <span class="spinner">
-          Loading...
-        </span>
-    </div>
-</ng-template>
+<div class="spinner-container" *ngIf="loading">
+  <span class="spinner">
+      Loading...
+    </span>
+</div>
 
-<section class="delivery-detail" *ngIf="(order$ | async)?.data as order; else loading">
+<app-http-error [hide]="loadingError" [buttonText]="'Reload'"
+(actionClicked)="fetchOrder(orderID)"></app-http-error>
+
+<section class="delivery-detail" *ngIf="!loading && order">
   <div class="row flex-items-lg-between flex-items-md-between page-header">
     <div class="col-lg-4 col-md-4 page-header-left">
         <a routerLink="/dashboard/deliveries"><clr-icon shape="caret" dir="left"></clr-icon> Deliveries</a>                  
