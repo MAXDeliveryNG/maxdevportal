@@ -2,6 +2,6 @@
 # production deployment script
 yarn install
 
-yarn run build:staging
+yarn run build
 
 yarn start
