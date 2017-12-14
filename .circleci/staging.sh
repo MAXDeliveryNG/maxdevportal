@@ -3,6 +3,6 @@
 
 yarn install
 
-./node_modules/.bin/ng build --prod --env=staging
+yarn run build:staging
 
 yarn start

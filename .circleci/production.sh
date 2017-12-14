@@ -2,6 +2,6 @@
 # production deployment script
 yarn install
 
-./node_modules/.bin/ng build --prod --env=prod
+yarn run build:staging
 
 yarn start
