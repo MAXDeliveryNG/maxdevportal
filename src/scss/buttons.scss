@@ -1,0 +1,26 @@
+.btn-default 
+{
+    border-color: $brand-primary !important;
+    color: $brand-primary !important;
+
+    &:hover {
+        background: $brand-primary !important;
+        color: #FFF !important;
+    }
+}
+
+.btn-primary
+{
+    border-color: $brand-primary !important;
+    background-color: $brand-primary !important;
+
+    &:hover {
+        background-color: darken($brand-primary, 10%) !important;
+    }
+}
+
+.btn-outline
+{
+    border-color: $brand-primary !important;
+    color: $brand-primary !important;
+}

@@ -1,0 +1,38 @@
+@import '~scss/variables.scss';
+
+.subnav 
+{
+    background: transparent;
+}
+
+.status-indicator.unassigned {
+color: $order-unassigned;
+}
+
+.status-indicator.assigned {
+color: $order-assigned;
+}
+
+.status-indicator.acknowledged {
+color: $order-acknowledged;
+}
+
+.status-indicator.arrived_pickup {
+color: $brand-primary;
+}
+
+.status-indicator.pickup {
+color: lighten($brand-primary, 10%);
+}
+
+.status-indicator.arrived_delivery {
+color: $order-arrived-delivery
+}
+
+.status-indicator.delivered {
+color: $order-delivered;
+}
+
+.status-indicator.cancelled {
+color: $order-cancelled;
+}

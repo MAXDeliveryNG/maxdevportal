@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://sandbox.max.ng/v1',
+  gMapsApiKey: 'AIzaSyBLpjCJGHAtV59mx_3m5raBUK_KuOsMNZs'
 };

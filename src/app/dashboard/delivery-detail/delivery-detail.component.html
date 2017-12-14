@@ -1,0 +1,135 @@
+<div class="spinner-container" *ngIf="loading">
+  <span class="spinner">
+      Loading...
+    </span>
+</div>
+
+<app-http-error [hide]="loadingError" [buttonText]="'Reload'"
+(actionClicked)="fetchOrder(orderID)"></app-http-error>
+
+<section class="delivery-detail" *ngIf="!loading && order">
+  <div class="row flex-items-lg-between flex-items-md-between page-header">
+    <div class="col-lg-4 col-md-4 page-header-left">
+        <a routerLink="/dashboard/deliveries"><clr-icon shape="caret" dir="left"></clr-icon> Deliveries</a>                  
+        <h2>Delivery</h2>
+    </div>
+    <div class="col-lg-4 col-md-4 page-header-right">
+      <!-- <button class="btn btn-primary">Create Delivery</button> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-4">
+      <div class="card">
+        <div class="card-block">
+          <div class="info-block">
+            <p class="name">
+              <clr-icon shape="circle" class="is-solid is-success"></clr-icon>                 
+              {{ order.sender_name }}
+            </p>
+            <address>
+              {{ order.pickup_address.full_address }}
+            </address>
+            <span class="phone">{{ order.sender_phone }}</span>
+          </div>
+
+          <div class="info-block">
+            <p class="name">
+              <clr-icon shape="circle" class="is-solid is-error"></clr-icon>
+              {{ order.recipient_name }}
+            </p>
+            <address>
+              {{ order.delivery_address.full_address }}
+            </address>
+            <span class="phone">{{ order.recipient_phone }}</span>
+          </div>
+          
+          <div class="info-block champion-block clearfix" *ngIf="order.champion_id">
+            <hr>
+            <h3>Champion</h3>
+            <div class="champion-image">
+              <img [src]="order.champion.photo" [alt]="order.champion.full_name">
+            </div>
+            <div class="champion-details">
+              <p class="name">{{ order.champion.full_name }}</p>
+              <span class="phone">{{ order.champion.phone }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8 col-md-8 delivery-map-card">
+      <div class="card">
+        <div class="card-block">
+          <agm-map [latitude]="mapDefaultCenter.lat" [longitude]="mapDefaultCenter.lng" [minZoom]="10">
+            <agm-marker [latitude]="order.pickup_address.coordinates.lat"
+            [longitude]="order.pickup_address.coordinates.lng" [iconUrl]="pickupMarkerIcon"></agm-marker>
+
+            <agm-marker [latitude]="order.delivery_address.coordinates.lat"
+            [longitude]="order.delivery_address.coordinates.lng" [iconUrl]="dropoffMarkerIcon"></agm-marker>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-md-6">
+      <div class="card">
+        <div class="card-header">Delivery Information</div>
+        <div class="card-block">
+          <table class="table table-noborder table-vertical">
+            <tr>
+              <td>Created</td>
+              <td class="left">{{ order.created_at | amDateFormat:'D MMM YYYY' }}</td>
+            </tr>
+            <tr>
+              <td>Pickup Window</td>
+              <td class="left">{{ order.pickup_window.date | amDateFormat:'D MMM YYYY' }}</td>
+            </tr>
+            <tr>
+              <td>Pickup Code</td>
+              <td class="left">{{ order.pickup_code }}</td>
+            </tr>
+            <tr>
+              <td>Delivery Code</td>
+              <td class="left">{{ order.delivery_code }}</td>
+            </tr>
+            <tr>
+                <td>Payment Method</td>
+                <td *ngIf="order.is_cash" class="left">Cash</td>
+                <td *ngIf="order.is_card" class="left">Card</td>
+                <td *ngIf="order.is_wallet" class="left">Wallet</td>
+              </tr>
+            <tr>
+              <td>Cash On Delivery (COD)</td>
+              <td class="left">{{ order.is_cod ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr *ngIf="order.is_cod">
+              <td>COD Amount</td>
+              <td class="left">NGN {{ order.cod_amount | number:"1.2-2" }}</td>
+            </tr>
+            <tr>
+              <td>Delivery Fee</td>
+              <td class="left">NGN {{ order.billed_charge | number:"1.2-2" }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <div class="card">
+        <div class="card-header">Delivery Progress</div>
+        <div class="card-block">
+          <table class="table table-noborder table-vertical">
+            <tr *ngFor="let item of order.order_status">
+              <td>{{ item.created_at | amDateFormat:'D MMM YYYY HH:MM A' }}</td>
+              <td class="left">{{ item.status }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,65 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:7.10.0-browsers
+        environment:
+          CHROME_BIN: "/usr/bin/google-chrome"
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/maxdevportal
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: 
+          name: Setup Build
+          command: yarn install; mkdir -p /tmp/logs
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      
+      - run:
+          name: Setup Test Environment
+          command: bash .circleci/setup.sh
+
+      # run tests!
+      - run: yarn test
+
+      - deploy:
+          name: Deploy to staging
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
+              git push staging staging >> /tmp/logs/deployment_report 2>&1
+              cat /tmp/logs/deployment_report
+              bash .circleci/slack.sh /tmp/logs/deployment_report deploy
+            fi
+      - deploy:
+          name: Deploy to production
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git push production master >> /tmp/logs/deployment_report 2>&1
+              cat /tmp/logs/deployment_report
+              bash .circleci/slack.sh /tmp/logs/deployment_report deploy
+            fi
+      - store_artifacts:
+          path: /tmp/logs
+          destination: logs
+

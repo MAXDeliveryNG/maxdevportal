@@ -1,0 +1,25 @@
+<div class="login-wrapper">
+  <form class="login" #form="ngForm" (submit)="submitForm()">
+
+    <div class="logo">
+      <a [routerLink]="['/']" ><img class="logo-image" src="https://res.cloudinary.com/max-ng/maxweb_img/logo_gold.png"></a>
+    </div>
+
+    <label class="title">
+      <h3 class="welcome">Welcome back</h3>
+    </label>
+
+    <div class="login-group">
+      <input class="username" name="username" type="email" id="login_username" placeholder="Email" [(ngModel)]="credentials.username" required>
+      <input class="password" name="password" type="password" id="login_password" placeholder="Password" [(ngModel)]="credentials.password" required>
+
+      <div *ngIf="error" class="error active">
+        {{ error }}
+      </div>
+
+      <button type="submit" class="btn btn-block btn-primary" [clrLoading]="loading" [disabled]="form.invalid || disableBtn">Login</button>
+
+      <a [routerLink]="['/signup']" class="signup">Don't have an account? Sign up</a>
+    </div>
+  </form>
+</div>
