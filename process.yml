@@ -2,7 +2,7 @@ apps:
 
   - script: start.js
     name: portal
-    instances: 0
+    instances: max
     exec_mode: cluster
     watch: false
     autorestart: true
