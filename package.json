@@ -6,7 +6,8 @@
     "ng": "ng",
     "server": "node start",
     "start": "pm2 restart process.yml",
-    "build": "ng build",
+    "build": "./node_modules/.bin/ng build --prod --env=prod",
+    "build:staging": "./node_modules/.bin/ng build --prod --env=staging",
     "test": "ng test -sm=false --single-run",
     "lint": "ng lint",
     "e2e": "ng e2e"
