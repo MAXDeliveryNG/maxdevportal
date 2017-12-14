@@ -2,6 +2,6 @@
 # production deployment script
 yarn install
 
-yarn run build
+yarn build
 
 yarn start
