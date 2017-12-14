@@ -51,6 +51,14 @@ jobs:
               cat /tmp/logs/deployment_report
               bash .circleci/slack.sh /tmp/logs/deployment_report deploy
             fi
+      - deploy:
+          name: Deploy to production
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git push production master >> /tmp/logs/deployment_report 2>&1
+              cat /tmp/logs/deployment_report
+              bash .circleci/slack.sh /tmp/logs/deployment_report deploy
+            fi
       - store_artifacts:
           path: /tmp/logs
           destination: logs
