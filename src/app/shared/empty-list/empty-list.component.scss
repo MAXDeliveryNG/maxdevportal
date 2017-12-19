@@ -1,0 +1,24 @@
+.empty-list
+{
+    width: 100%;
+    display: block;
+    margin: 140px auto;
+
+    .empty-image 
+    {
+        width: 400px;
+        margin: 0px auto;
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+    }
+
+    .empty-message
+    {
+        text-align: center;
+    }
+}
