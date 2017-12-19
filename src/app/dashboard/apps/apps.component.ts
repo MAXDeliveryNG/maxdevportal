@@ -22,6 +22,7 @@ export class AppsComponent extends Pageable implements OnInit, OnDestroy {
   loading: boolean;
   deleting: boolean = false;
   loadingError: boolean = false;
+  noDataMessage: string = `You have not created any MAX apps.`
   
   constructor(
     private session: SessionService,
