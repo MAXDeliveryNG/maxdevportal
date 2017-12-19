@@ -6,6 +6,7 @@
     "ng": "ng",
     "server": "node start",
     "start": "pm2 restart process.yml",
+    "start-dev": "PORT=5050 ng serve",
     "build": "./node_modules/.bin/ng build --prod --env=prod",
     "build:staging": "./node_modules/.bin/ng build --prod --env=staging",
     "test": "ng test -sm=false --single-run",
