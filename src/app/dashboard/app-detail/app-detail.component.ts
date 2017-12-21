@@ -6,6 +6,8 @@ import { App } from 'app/models/data/app';
 import { AppKey } from 'app/models/data/app-key';
 import { Modal } from 'clarity-angular';
 import { AppkeyModalComponent } from 'app/dashboard/appkey-modal/appkey-modal.component';
+import { ObjectUtils } from 'app/shared/utils/object';
+import { merge } from 'lodash';
 
 @Component({
   selector: 'app-app-detail',
@@ -22,6 +24,8 @@ export class AppDetailComponent implements OnInit, OnDestroy {
   id: string;
   toDelete: AppKey;
   deleting: boolean = false;
+  saving: boolean = false;
+  @ViewChild('form') form;
   @ViewChild('deleteModal') keyDeleteModal: Modal;
   @ViewChild('keyModal') keyModal: AppkeyModalComponent;
   errorMessage: string;
@@ -64,6 +68,20 @@ export class AppDetailComponent implements OnInit, OnDestroy {
 
   updateAppKeys($event: AppKey) {
     this.data.keys.unshift($event);
+  }
+
+  save() {
+    this.saving = true;
+    let model = ObjectUtils.getDirtyValues(this.form);
+
+    this.appService.update(this.data.id, model)
+      .subscribe(response => {
+        this.data = merge(this.data, response.data);
+      }, err => {
+        this.saving = false;
+      }, () => {
+        this.saving = false;
+      })
   }
   
   fetchData(id: string) {

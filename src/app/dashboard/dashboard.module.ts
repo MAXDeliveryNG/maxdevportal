@@ -39,7 +39,12 @@ import { AppkeyModalComponent } from './appkey-modal/appkey-modal.component';
   declarations: [
     HeaderComponent,
     DashboardComponent, 
-    DeliveriesComponent, DeliveryDetailComponent, AppsComponent, AppformModalComponent, AppDetailComponent, AppkeyModalComponent
+    DeliveriesComponent, 
+    DeliveryDetailComponent, 
+    AppsComponent, 
+    AppformModalComponent, 
+    AppDetailComponent, 
+    AppkeyModalComponent
   ],
   providers: [
     DateFormatPipe,

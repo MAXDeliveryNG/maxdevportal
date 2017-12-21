@@ -56,7 +56,7 @@
                     <hr>
 
                     <button class="btn btn-outline" type="button">Cancel</button>
-                    <button class="btn btn-primary" type="button" [disabled]="form.invalid">Save</button>                    
+                    <button class="btn btn-primary" type="button" [disabled]="form.invalid || saving" (click)="save()">Save</button>                    
                   </div>
                 </form>
               </clr-tab-content>
@@ -110,8 +110,8 @@
                         </span>
                       </td>
                       <td class="left">
-                          <clr-icon shape="check-circle" size="20" *ngIf="!key.is_revoked"></clr-icon>
-                          <clr-icon shape="check-circle" size="20" class="is-solid is-success" *ngIf="key.is_revoked"></clr-icon>                          
+                          <clr-icon shape="check-circle" size="20" *ngIf="key.is_revoked"></clr-icon>
+                          <clr-icon shape="check-circle" size="20" class="is-solid is-success" *ngIf="!key.is_revoked"></clr-icon>                          
                       </td>
                       <td>
                         <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-bottom-left">
