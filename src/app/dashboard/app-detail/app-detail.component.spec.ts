@@ -9,6 +9,7 @@ import { MomentModule } from 'angular2-moment/moment.module';
 import { ClipboardModule } from 'ngx-clipboard/src';
 import { AppService } from 'app/services';
 import { HttpClientModule } from '@angular/common/http';
+import { AppkeyModalComponent } from 'app/dashboard/appkey-modal/appkey-modal.component';
 
 describe('AppDetailComponent', () => {
   let component: AppDetailComponent;
@@ -23,9 +24,12 @@ describe('AppDetailComponent', () => {
         ClarityModule.forRoot(),
         MomentModule,
         ClipboardModule,
-        SharedModule
+        SharedModule,
       ],
-      declarations: [ AppDetailComponent ],
+      declarations: [ 
+        AppDetailComponent,
+        AppkeyModalComponent
+      ],
       providers: [
         AppService
       ]
