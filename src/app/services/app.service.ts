@@ -46,7 +46,7 @@ export class AppService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const url = `${this.baseUrl}/${id}`;
 
-    return this.httpClient.put(url, data, { headers });
+    return this.httpClient.put<any>(url, data, { headers });
   }
 
   delete(id: string) {
