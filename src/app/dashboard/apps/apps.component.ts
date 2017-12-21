@@ -37,8 +37,13 @@ export class AppsComponent extends Pageable implements OnInit, OnDestroy {
   }
   
   transformDates(response) {
-    response.created_at = response.created_at * 1000;
-    response.updated_at = response.updated_at * 1000;
+    response.data.map(app => {
+      app.created_at = app.created_at * 1000;
+      app.updated_at = app.updated_at * 1000;
+
+      return app;
+    })
+    
     return response;
   }
   
