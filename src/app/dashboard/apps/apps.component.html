@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="container" *ngIf="!loading && apps.length < 1">
+  <div class="container" *ngIf="!loading && !loadingError && apps.length < 1">
     <empty-list [message]="noDataMessage"></empty-list>
   </div>
 
