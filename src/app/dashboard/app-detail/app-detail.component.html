@@ -65,7 +65,14 @@
             <clr-tab>
               <button clrTabLink>App Keys</button>
               <clr-tab-content *clrIfActive>
-                <p>Manage your app's security keys</p>
+                <div class="row flex-items-lg-between flex-items-md-between sub-header">
+                  <div class="col-lg-4 col-md-4 sub-header-left">
+                      <p>Manage your app's security keys</p>                      
+                  </div>
+                  <div class="col-lg-4 col-md-4 sub-header-right">
+                    <button class="btn btn-primary" (click)="keyModal.open()">New Key</button>
+                  </div>
+                </div>
 
                 <table class="table table-noborder key-list">
                   <thead>
@@ -73,6 +80,7 @@
                       <th class="left">Name</th>
                       <th class="left">Creation Date</th>
                       <th class="left">Key pair</th>
+                      <th class="left">Active</th>
                       <th class="left">Actions</th>
                     </tr>
                   </thead>
@@ -101,9 +109,20 @@
                           </a>   
                         </span>
                       </td>
+                      <td class="left">
+                          <clr-icon shape="check-circle" size="20" *ngIf="!key.is_revoked"></clr-icon>
+                          <clr-icon shape="check-circle" size="20" class="is-solid is-success" *ngIf="key.is_revoked"></clr-icon>                          
+                      </td>
                       <td>
-                        <a><clr-icon shape="pencil" class="is-solid"></clr-icon></a>
-                        <a><clr-icon shape="trash" class="is-solid"></clr-icon></a>
+                        <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-bottom-left">
+                          <clr-icon shape="ban"></clr-icon>
+                          <span class="tooltip-content">Revoke Key</span>
+                        </a>
+                        <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-bottom-left" 
+                          (click)="showDeleteModal(key)">
+                          <clr-icon shape="trash" class="is-solid"></clr-icon>
+                          <span class="tooltip-content">Delete Key</span>
+                        </a>
                       </td>
                     </tr>
                   </tbody>
@@ -116,3 +135,31 @@
     </div>
   </div>
 </section>
+
+<clr-modal #deleteModal>
+    <h3 class="modal-title">Delete key</h3>
+    <div class="modal-body">
+      <div class="alert alert-danger" *ngIf="errorMessage">
+          <div class="alert-items">
+              <div class="alert-item static">
+                  <div class="alert-icon-wrapper">
+                      <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                  </div>
+                  <span class="alert-text">
+                      {{ errorMessage }}
+                  </span>
+              </div>
+          </div>
+          <button type="button" class="close" aria-label="Close" (click)="errorMessage = null">
+              <clr-icon aria-hidden="true" shape="close"></clr-icon>
+          </button>
+      </div>
+      <p>Are you sure you want to delete this key?. Your app clients using this key will no longer have access to the MAX API.</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" (click)="keyDeleteModal.close()">Cancel</button>
+        <button type="button" class="btn btn-primary" [clrLoading]="deleting" [disabled]="deleting" (click)="deleteKey()">Yes</button>
+    </div>
+</clr-modal>
+
+<appkey-modal #keyModal [app]="data" (keyCreated)="updateAppKeys($event)"></appkey-modal>
