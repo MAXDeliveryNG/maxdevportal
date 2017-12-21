@@ -1,3 +1,17 @@
+@import "~scss/variables.scss";
+@import "~scss/mixins.scss";
+
+@include respond-to('medium')
+{
+    .sub-header-right 
+    {
+        text-align: right;
+        button {
+            margin-top: 15px;
+        }
+    }
+}
+
 .key-list
 {
     .key-label

@@ -1,0 +1,21 @@
+<clr-modal #modal>
+    <h3 class="modal-title">New Key</h3>
+    <div class="modal-body">
+      <form #form="ngForm" novalidate>
+        <section class="form-block">
+          <div class="form-group">
+            <label for="name" class="required">Key Name</label>
+            <input type="text" name="name" id="name" [(ngModel)]="model.name" size="60" required>
+          </div>
+        </section>
+      </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="modal.close()">Cancel</button>
+        <button type="button" class="btn btn-primary" 
+        [disabled]="form.invalid || saving"
+        (click)="save()">
+          {{ saving ? 'Saving' : 'Save' }}
+        </button>
+    </div>
+  </clr-modal>
