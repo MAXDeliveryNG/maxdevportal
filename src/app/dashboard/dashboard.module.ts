@@ -7,6 +7,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ClarityModule } from 'clarity-angular';
 import { MomentModule, DateFormatPipe } from 'angular2-moment';
 import { AgmCoreModule } from '@agm/core';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { SessionService, UserService, OrderService, AppService } from '../services'
 
@@ -31,6 +32,7 @@ import { AppDetailComponent } from './app-detail/app-detail.component';
     AgmCoreModule.forRoot({
       apiKey: environment.gMapsApiKey
     }),
+    ClipboardModule,
     DashboardRoutingModule
   ],
   declarations: [

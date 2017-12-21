@@ -30,6 +30,10 @@
     </div>
   </div>
 
+  <div class="container" *ngIf="!loading && !loadingError && apps.length < 1">
+    <empty-list [message]="noDataMessage"></empty-list>
+  </div>
+
   <appform-modal #appformModal></appform-modal>
   <clr-modal #deleteModal [clrModalSize]="'sm'">
       <h3 class="modal-title">Delete App</h3>

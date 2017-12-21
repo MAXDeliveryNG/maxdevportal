@@ -25,7 +25,7 @@ export class AppService {
       })
     }
 
-    return this.httpClient.get(url, { headers, params });
+    return this.httpClient.get<any>(url, { headers, params });
   }
 
   update(id: string, data: object) {

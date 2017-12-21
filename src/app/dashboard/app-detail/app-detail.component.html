@@ -1,3 +1,118 @@
-<p>
-  app-detail works!
-</p>
+<div class="spinner-container" *ngIf="loading">
+  <span class="spinner">
+      Loading...
+    </span>
+</div>
+
+<app-http-error [hide]="loadingError" [buttonText]="'Reload'" (actionClicked)="fetchData(id)"></app-http-error>
+
+<section *ngIf="!loading && data">
+  <div class="row flex-items-lg-between flex-items-md-between flex-items-xs-between page-header">
+    <div class="col-lg-4 col-md-4 page-header-left">
+        <h2>{{ data.name }}</h2>
+    </div>
+    <div class="col-lg-4 col-md-4 page-header-right"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="card">
+        <div class="card-block">
+          <clr-tabs>
+            <clr-tab>
+              <button clrTabLink id="link1">Overview</button>
+              <clr-tab-content id="content1" *clrIfActive="true">
+
+                <form #form="ngForm" novalidate>
+                  <div class="form-block">
+                    <label>App Details</label>
+                    <div class="form-group">
+                      <label for="name" class="required">App Name</label>
+                      <input type="text" name="name" id="name" size="60" [(ngModel)]="data.name" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="description" class="required">App Description</label>
+                      <textarea name="description" id="description" rows="5" [(ngModel)]="data.description" required></textarea>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="form-block">
+                    <label>Webhook Details</label>
+                    <div class="row" style="padding-bottom: 25px;">
+                      <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                          <label for="webhook_url">Webhook URL</label>
+                          <input type="url" name="webhook_url" id="webhook_url" 
+                          [(ngModel)]="data.webhook_url"
+                          placeholder="HTTPS url endpoint" size="60">
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <p>To get continuous updates about delivery requests initiated from your app, please provide a webhook endpoint. <a href="" target="_blank">Learn More</a>.</p>
+                      </div>
+                    </div>
+                    <hr>
+
+                    <button class="btn btn-outline" type="button">Cancel</button>
+                    <button class="btn btn-primary" type="button" [disabled]="form.invalid">Save</button>                    
+                  </div>
+                </form>
+              </clr-tab-content>
+            </clr-tab>
+    
+            <clr-tab>
+              <button clrTabLink>App Keys</button>
+              <clr-tab-content *clrIfActive>
+                <p>Manage your app's security keys</p>
+
+                <table class="table table-noborder key-list">
+                  <thead>
+                    <tr>
+                      <th class="left">Name</th>
+                      <th class="left">Creation Date</th>
+                      <th class="left">Key pair</th>
+                      <th class="left">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let key of data.keys">
+                      <td class="left">{{ key.name }}</td>
+                      <td class="left">{{ key.created_at | amDateFormat:'MMM D, YYYY' }}</td>
+                      <td class="left">
+                        <span class="key-label">Public Key</span>
+                        <span class="key">{{ key.public_key }}
+                          <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-bottom-left" 
+                          ngxClipboard [cbContent]="key.public_key">
+                            <clr-icon shape="copy" class="is-solid"></clr-icon>
+                            <span class="tooltip-content">Copy to clipboard</span>                            
+                          </a>                           
+                        </span>
+                        <span class="key-label">Private Key</span>
+                        <span class="label clickable" (click)="key.visible ? key.visible = false : key.visible = true">
+                          {{ key.visible ? 'Hide' : 'Show' }}
+                        </span>                        
+                        <span class="key" *ngIf="key.visible">{{ key.private_key }}
+                          <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-bottom-left" 
+                          ngxClipboard [cbContent]="key.private_key">
+                            <clr-icon shape="copy" class="is-solid"></clr-icon>
+                            <span class="tooltip-content">Copy to clipboard</span>                            
+                          </a>   
+                        </span>
+                      </td>
+                      <td>
+                        <a><clr-icon shape="pencil" class="is-solid"></clr-icon></a>
+                        <a><clr-icon shape="trash" class="is-solid"></clr-icon></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </clr-tab-content>
+            </clr-tab>
+          </clr-tabs>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

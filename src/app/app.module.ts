@@ -16,7 +16,7 @@ import { SessionService } from './services';
 
 @NgModule({
   declarations: [
-    AppComponent    
+    AppComponent
   ],
   imports: [
     BrowserModule,

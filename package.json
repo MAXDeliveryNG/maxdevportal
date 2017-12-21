@@ -6,6 +6,7 @@
     "ng": "ng",
     "server": "node start",
     "start": "pm2 restart process.yml",
+    "start-dev": "PORT=5050 ng serve",
     "build": "./node_modules/.bin/ng build --prod --env=prod",
     "build:staging": "./node_modules/.bin/ng build --prod --env=staging",
     "test": "ng test -sm=false --single-run",
@@ -40,6 +41,7 @@
     "express": "^4.16.2",
     "lodash": "^4.17.4",
     "mutationobserver-shim": "0.3.2",
+    "ngx-clipboard": "^9.0.0",
     "request": "^2.83.0",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.16"
