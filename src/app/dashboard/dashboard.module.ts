@@ -20,6 +20,7 @@ import { environment } from '../../environments/environment';
 import { AppsComponent } from './apps/apps.component';
 import { AppformModalComponent } from './appform-modal/appform-modal.component';
 import { AppDetailComponent } from './app-detail/app-detail.component';
+import { AppkeyModalComponent } from './appkey-modal/appkey-modal.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,7 @@ import { AppDetailComponent } from './app-detail/app-detail.component';
   declarations: [
     HeaderComponent,
     DashboardComponent, 
-    DeliveriesComponent, DeliveryDetailComponent, AppsComponent, AppformModalComponent, AppDetailComponent
+    DeliveriesComponent, DeliveryDetailComponent, AppsComponent, AppformModalComponent, AppDetailComponent, AppkeyModalComponent
   ],
   providers: [
     DateFormatPipe,
