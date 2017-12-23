@@ -1,6 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppDetailComponent } from './app-detail.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ClarityModule } from 'clarity-angular';
+import { SharedModule } from 'app/shared/shared.module';
+import { FormsModule } from '@angular/forms';
+import { MomentModule } from 'angular2-moment/moment.module';
+import { ClipboardModule } from 'ngx-clipboard/src';
+import { AppService } from 'app/services';
+import { HttpClientModule } from '@angular/common/http';
+import { AppkeyModalComponent } from 'app/dashboard/appkey-modal/appkey-modal.component';
 
 describe('AppDetailComponent', () => {
   let component: AppDetailComponent;
@@ -8,7 +17,22 @@ describe('AppDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppDetailComponent ]
+      imports: [
+        RouterTestingModule,
+        FormsModule,
+        HttpClientModule,
+        ClarityModule.forRoot(),
+        MomentModule,
+        ClipboardModule,
+        SharedModule,
+      ],
+      declarations: [ 
+        AppDetailComponent,
+        AppkeyModalComponent
+      ],
+      providers: [
+        AppService
+      ]
     })
     .compileComponents();
   }));

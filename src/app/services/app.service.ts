@@ -14,6 +14,13 @@ export class AppService {
     return this.httpClient.post<any>(this.baseUrl, body, { headers });
   }
 
+  createKey(id: string, body: object) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const url = `${this.baseUrl}/${id}/keys`;
+
+    return this.httpClient.post<any>(url, body, { headers });
+  }
+
   read(id: string, options?: object) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     let params = new HttpParams();
@@ -25,19 +32,33 @@ export class AppService {
       })
     }
 
-    return this.httpClient.get(url, { headers, params });
+    return this.httpClient.get<any>(url, { headers, params });
+  }
+
+  revokeKey(id: string) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const url = `${this.baseUrl}/keys/${id}/revoke`;
+
+    return this.httpClient.put<any>(url, {}, { headers });
   }
 
   update(id: string, data: object) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const url = `${this.baseUrl}/${id}`;
 
-    return this.httpClient.put(url, data, { headers });
+    return this.httpClient.put<any>(url, data, { headers });
   }
 
   delete(id: string) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const url = `${this.baseUrl}/${id}`;
+
+    return this.httpClient.delete<any>(url, { headers });
+  }
+
+  deleteKey(id: string) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const url = `${this.baseUrl}/keys/${id}`;
 
     return this.httpClient.delete<any>(url, { headers });
   }

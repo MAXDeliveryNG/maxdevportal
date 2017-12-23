@@ -7,6 +7,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ClarityModule } from 'clarity-angular';
 import { MomentModule, DateFormatPipe } from 'angular2-moment';
 import { AgmCoreModule } from '@agm/core';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { SessionService, UserService, OrderService, AppService } from '../services'
 
@@ -19,6 +20,7 @@ import { environment } from '../../environments/environment';
 import { AppsComponent } from './apps/apps.component';
 import { AppformModalComponent } from './appform-modal/appform-modal.component';
 import { AppDetailComponent } from './app-detail/app-detail.component';
+import { AppkeyModalComponent } from './appkey-modal/appkey-modal.component';
 
 @NgModule({
   imports: [
@@ -31,12 +33,18 @@ import { AppDetailComponent } from './app-detail/app-detail.component';
     AgmCoreModule.forRoot({
       apiKey: environment.gMapsApiKey
     }),
+    ClipboardModule,
     DashboardRoutingModule
   ],
   declarations: [
     HeaderComponent,
     DashboardComponent, 
-    DeliveriesComponent, DeliveryDetailComponent, AppsComponent, AppformModalComponent, AppDetailComponent
+    DeliveriesComponent, 
+    DeliveryDetailComponent, 
+    AppsComponent, 
+    AppformModalComponent, 
+    AppDetailComponent, 
+    AppkeyModalComponent
   ],
   providers: [
     DateFormatPipe,
