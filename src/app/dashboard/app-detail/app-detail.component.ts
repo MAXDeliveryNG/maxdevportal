@@ -49,7 +49,7 @@ export class AppDetailComponent implements OnInit, OnDestroy {
     this.toDelete = key;
   }
 
-  deleteKey(id: string) {
+  deleteKey() {
     if (this.data.keys.length < 2) {
       this.errorMessage = "Your app must have at least one key";
     } else {
