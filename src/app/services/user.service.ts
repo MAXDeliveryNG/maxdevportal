@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Orders } from 'app/models/responses/orders';
 import { Apps } from 'app/models/responses/apps';
+import { SignupResponse } from 'app/models/responses/signup';
 
 @Injectable()
 export class UserService {
@@ -10,6 +11,11 @@ export class UserService {
   baseUrl: string = `${environment.apiUrl}/users`;
   
   constructor(private httpClient: HttpClient) { }
+
+  create(body: object) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.post<SignupResponse>(this.baseUrl, body, { headers });
+  }
 
   orders(id: string, options?: object) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
