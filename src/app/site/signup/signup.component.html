@@ -1,5 +1,5 @@
 <div class="login-wrapper">
-  <form class="login">
+  <form class="login" #form="ngForm" (submit)="signup()">
 
     <div class="logo">
       <a [routerLink]="['/']" ><img class="logo-image" src="https://res.cloudinary.com/max-ng/maxweb_img/logo_gold.png"></a>
@@ -10,18 +10,47 @@
     </label>
 
     <div class="login-group">
-      <input class="username" type="text" id="login_email" placeholder="First Name">
-      <input class="username" type="text" id="login_email" placeholder="Last Name">
-      <input class="username" type="text" id="login_email" placeholder="Phone Number">
-      <input class="username" type="text" id="login_email" placeholder="Email">
-      <input class="password" type="password" id="login_password" placeholder="Password">
-
-
-      <div *ngIf class="error active">
-        Invalid user name or password
+      <input class="username" name="first_name" type="text" id="first_name" #firstnameInput="ngModel"
+      [(ngModel)]="model.first_name" placeholder="First Name" required>
+      <div class="input__errors" [hidden]="firstnameInput.valid || firstnameInput.pristine">
+        <span class="input__errors_error" *ngIf="firstnameInput.hasError('required')">Please enter your first name</span>
       </div>
 
-      <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+      <input class="username" name="last_name" type="text" id="last_name" #lastnameInput="ngModel"
+      [(ngModel)]="model.last_name" placeholder="Last Name" required>
+      <div class="input__errors" [hidden]="lastnameInput.valid || lastnameInput.pristine">
+        <span class="input__errors_error" *ngIf="lastnameInput.hasError('required')">Please enter your last name</span>
+      </div>
+
+      <input class="username" name="phone" type="text" id="phone" #phoneInput="ngModel"
+      [(ngModel)]="model.phone" placeholder="Phone Number" numeric phone required>
+      <div class="input__errors" [hidden]="phoneInput.valid || phoneInput.pristine">
+        <span class="input__errors_error" *ngIf="phoneInput.hasError('required')">Please enter your phone number</span>
+        <span class="input__errors_error" *ngIf="phoneInput.hasError('phone')">Please enter a valid phone number</span>
+      </div>
+
+      <input class="username" name="email" type="text" id="email" 
+      [(ngModel)]="model.email" placeholder="Email" #emailInput="ngModel" required>
+      <div class="input__errors" [hidden]="emailInput.valid || emailInput.pristine">
+        <span class="input__errors_error" *ngIf="emailInput.hasError('required')">Please enter your email address</span>
+        <span class="input__errors_error" *ngIf="emailInput.hasError('email')">Please enter a valid email</span>
+      </div>
+
+      <input class="password" name="password" type="password" id="password" minlength="8"
+      [(ngModel)]="model.password" placeholder="Password" #passwordInput="ngModel" #passwordInput="ngModel" required>
+      <div class="input__errors" [hidden]="passwordInput.valid || passwordInput.pristine">
+        <span class="input__errors_error" *ngIf="passwordInput.hasError('required')">Please enter a password</span>
+        <span class="input__errors_error" *ngIf="passwordInput.hasError('minlength')">
+          Password must have at least 8 characters. Consider using a sentence or phrase.
+        </span>
+      </div>
+
+      <div *ngIf="error" class="error active">
+        {{ error }}
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" [clrLoading]="loading"
+      [disabled]="form.invalid || loading">Sign Up</button>
 
       <a [routerLink]="['/login']" class="signup">Already have an account? Sign in</a>
     </div>

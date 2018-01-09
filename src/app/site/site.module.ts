@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
-import { SessionService, AuthService } from '../services';
+import { SessionService, AuthService, UserService } from '../services';
 
 @NgModule({
   imports: [
@@ -22,6 +22,6 @@ import { SessionService, AuthService } from '../services';
     SiteRoutingModule
   ],
   declarations: [HomeComponent, LoginComponent, SignupComponent],
-  providers: [SessionService, AuthService]
+  providers: [SessionService, AuthService, UserService]
 })
 export class SiteModule { }

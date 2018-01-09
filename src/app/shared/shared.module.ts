@@ -7,6 +7,14 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HttpErrorComponent } from './http-error/http-error.component';
 import { EmptyListComponent } from './empty-list/empty-list.component';
 
+import { NumericDirective } from './directives/numeric.directive';
+import { PhoneNumberDirective } from './validators/phone/phone.directive';
+import { CreditCardNumberDirective } from './validators/credit-cardno/credit-cardno.directive';
+
+import { IntlPhoneNumberPipe } from './pipes/intl-phone-number';
+import { CreditCardnoPipe } from './pipes/credit-cardno.pipe';
+import { UppercaseFirstCharacterPipe } from './pipes/uppercase-firstcharacter';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,14 +24,24 @@ import { EmptyListComponent } from './empty-list/empty-list.component';
     HeaderComponent,
     FooterComponent,
     HttpErrorComponent,
-    EmptyListComponent
+    EmptyListComponent,
+    PhoneNumberDirective,
+    CreditCardNumberDirective, 
+    IntlPhoneNumberPipe,
+    UppercaseFirstCharacterPipe,
+    NumericDirective
   ],
   declarations: [
     HeaderComponent, 
     FooterComponent, 
     HttpErrorComponent, 
-    EmptyListComponent
+    EmptyListComponent,
+    PhoneNumberDirective,
+    CreditCardNumberDirective,
+    IntlPhoneNumberPipe,
+    UppercaseFirstCharacterPipe,
+    NumericDirective
   ],
-  providers: []
+  providers: [IntlPhoneNumberPipe, CreditCardnoPipe]
 })
 export class SharedModule { }
