@@ -5,7 +5,9 @@ import { FormsModule} from '@angular/forms';
 import { ClarityModule } from 'clarity-angular';
 
 import { SignupComponent } from './signup.component';
-import { AuthService } from '../../services'
+import { AuthService, SessionService, UserService } from '../../services'
+import { PersistenceService } from 'angular-persistence/src/services/persistence.service';
+import { JwtHelper } from 'angular2-jwt';
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
@@ -15,7 +17,13 @@ describe('SignupComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SignupComponent ],
       imports: [FormsModule, HttpClientTestingModule, RouterTestingModule, ClarityModule],
-      providers: [AuthService]
+      providers: [
+        AuthService, 
+        SessionService, 
+        UserService, 
+        JwtHelper,
+        PersistenceService
+      ]
     })
     .compileComponents();
   }));
