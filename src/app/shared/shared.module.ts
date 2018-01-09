@@ -27,6 +27,7 @@ import { UppercaseFirstCharacterPipe } from './pipes/uppercase-firstcharacter';
     EmptyListComponent,
     PhoneNumberDirective,
     CreditCardNumberDirective, 
+    CreditCardnoPipe,
     IntlPhoneNumberPipe,
     UppercaseFirstCharacterPipe,
     NumericDirective
@@ -38,6 +39,7 @@ import { UppercaseFirstCharacterPipe } from './pipes/uppercase-firstcharacter';
     EmptyListComponent,
     PhoneNumberDirective,
     CreditCardNumberDirective,
+    CreditCardnoPipe,
     IntlPhoneNumberPipe,
     UppercaseFirstCharacterPipe,
     NumericDirective
