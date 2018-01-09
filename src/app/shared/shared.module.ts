@@ -10,6 +10,7 @@ import { EmptyListComponent } from './empty-list/empty-list.component';
 import { NumericDirective } from './directives/numeric.directive';
 import { PhoneNumberDirective } from './validators/phone/phone.directive';
 import { CreditCardNumberDirective } from './validators/credit-cardno/credit-cardno.directive';
+import { MatchValidator } from './validators/match/match.directive';
 
 import { IntlPhoneNumberPipe } from './pipes/intl-phone-number';
 import { CreditCardnoPipe } from './pipes/credit-cardno.pipe';
@@ -42,7 +43,8 @@ import { UppercaseFirstCharacterPipe } from './pipes/uppercase-firstcharacter';
     CreditCardnoPipe,
     IntlPhoneNumberPipe,
     UppercaseFirstCharacterPipe,
-    NumericDirective
+    NumericDirective,
+    MatchValidator
   ],
   providers: [IntlPhoneNumberPipe, CreditCardnoPipe]
 })
