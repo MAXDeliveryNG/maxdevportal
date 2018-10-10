@@ -5,13 +5,13 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class OrderService {
 
-  baseUrl: string = `${environment.apiUrl}/orders`;
-  
+  baseUrl = `${environment.apiUrl}/orders`;
+
   constructor(private httpClient: HttpClient) { }
 
   create(body: object) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post(this.baseUrl, body, { headers });
+    return this.httpClient.post<any>(this.baseUrl, body, { headers });
   }
 
   get(id: string, options?: object) {
@@ -25,7 +25,7 @@ export class OrderService {
       })
     }
 
-    return this.httpClient.get(url, { headers, params });
+    return this.httpClient.get<any>(url, { headers, params });
   }
 
   status(id: string) {

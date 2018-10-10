@@ -1,13 +1,10 @@
-<div class="spinner-container" *ngIf="loading">
-  <span class="spinner">
-      Loading...
-    </span>
-</div>
+<!-- <app-http-error 
+*ngIf="loadingError && !loading"
+[buttonText]="'Reload'"
+(actionClicked)="fetchOrder(orderID)">
+</app-http-error> -->
 
-<app-http-error [hide]="loadingError" [buttonText]="'Reload'"
-(actionClicked)="fetchOrder(orderID)"></app-http-error>
-
-<section class="delivery-detail" *ngIf="!loading && order">
+<section class="delivery-detail" *ngIf="(order$ | async) as order; else loading;">
   <div class="row flex-items-lg-between flex-items-md-between page-header">
     <div class="col-lg-4 col-md-4 page-header-left">
         <a routerLink="/dashboard/deliveries"><clr-icon shape="caret" dir="left"></clr-icon> Deliveries</a>                  
@@ -28,7 +25,7 @@
               {{ order.sender_name }}
             </p>
             <address>
-              {{ order.pickup_address.full_address }}
+              {{ order.origin.address }}
             </address>
             <span class="phone">{{ order.sender_phone }}</span>
           </div>
@@ -39,7 +36,7 @@
               {{ order.recipient_name }}
             </p>
             <address>
-              {{ order.delivery_address.full_address }}
+              {{ order.destination.address }}
             </address>
             <span class="phone">{{ order.recipient_phone }}</span>
           </div>
@@ -63,11 +60,11 @@
       <div class="card">
         <div class="card-block">
           <agm-map [latitude]="mapDefaultCenter.lat" [longitude]="mapDefaultCenter.lng" [minZoom]="10">
-            <agm-marker [latitude]="order.pickup_address.coordinates.lat"
-            [longitude]="order.pickup_address.coordinates.lng" [iconUrl]="pickupMarkerIcon"></agm-marker>
+            <agm-marker [latitude]="order.origin.lat"
+            [longitude]="order.origin.lng" [iconUrl]="pickupMarkerIcon"></agm-marker>
 
-            <agm-marker [latitude]="order.delivery_address.coordinates.lat"
-            [longitude]="order.delivery_address.coordinates.lng" [iconUrl]="dropoffMarkerIcon"></agm-marker>
+            <agm-marker [latitude]="order.destination.lat"
+            [longitude]="order.destination.lng" [iconUrl]="dropoffMarkerIcon"></agm-marker>
           </agm-map>
         </div>
       </div>
@@ -133,3 +130,11 @@
     </div>
   </div>
 </section>
+
+<ng-template #loading>
+  <div class="spinner-container">
+    <span class="spinner">
+        Loading...
+      </span>
+  </div>
+</ng-template>
