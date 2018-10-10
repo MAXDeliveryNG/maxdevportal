@@ -1,4 +1,4 @@
-import { AppKey } from "app/models/data/app-key";
+import { AppKey } from 'app/models/data/app-key';
 
 export interface App {
     id?: string;

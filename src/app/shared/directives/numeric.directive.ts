@@ -1,6 +1,7 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
+    // tslint:disable-next-line:directive-selector
     selector: '[numeric]'
 })
 
@@ -17,10 +18,10 @@ export class NumericDirective {
         if (this.specialKeys.indexOf(event.key) !== -1) {
             return;
         }
-        let current: string = this.el.nativeElement.value;
+        const current: string = this.el.nativeElement.value;
         // We need this because the current value on the DOM element
         // is not yet updated with the value from this event
-        let next: string = current.concat(event.key);
+        const next: string = current.concat(event.key);
         if (next && !String(next).match(this.regex)) {
             event.preventDefault();
         }

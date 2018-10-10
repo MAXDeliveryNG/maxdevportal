@@ -1,7 +1,7 @@
 import { ViewChild, Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'app/services';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { App } from 'app/models/data/app';
 import { AppKey } from 'app/models/data/app-key';
 import { Modal } from 'clarity-angular';
@@ -18,20 +18,20 @@ import { merge } from 'lodash';
 export class AppDetailComponent implements OnInit, OnDestroy {
 
   route$: Subscription;
-  loading: boolean = true;
-  loadingError: boolean = false;
+  loading = true;
+  loadingError = false;
   data: App;
   id: string;
   toDelete: AppKey;
-  deleting: boolean = false;
-  saving: boolean = false;
+  deleting = false;
+  saving = false;
   @ViewChild('form') form;
   @ViewChild('deleteModal') keyDeleteModal: Modal;
   @ViewChild('keyModal') keyModal: AppkeyModalComponent;
   errorMessage: string;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private appService: AppService) { }
 
   private transform(response) {
@@ -51,7 +51,7 @@ export class AppDetailComponent implements OnInit, OnDestroy {
 
   deleteKey() {
     if (this.data.keys.length < 2) {
-      this.errorMessage = "Your app must have at least one key";
+      this.errorMessage = 'Your app must have at least one key';
     } else {
       this.deleting = true;
 
@@ -72,7 +72,7 @@ export class AppDetailComponent implements OnInit, OnDestroy {
 
   save() {
     this.saving = true;
-    let model = ObjectUtils.getDirtyValues(this.form);
+    const model = ObjectUtils.getDirtyValues(this.form);
 
     this.appService.update(this.data.id, model)
       .subscribe(response => {
@@ -83,7 +83,7 @@ export class AppDetailComponent implements OnInit, OnDestroy {
         this.saving = false;
       })
   }
-  
+
   fetchData(id: string) {
     this.loadingError = false;
 

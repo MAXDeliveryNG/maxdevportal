@@ -1,14 +1,14 @@
-import { Pagination } from "app/models/pagination";
-import { Subject } from "rxjs/Subject";
-import { DatagridPagination } from "clarity-angular";
+import { Pagination } from 'app/models/pagination';
+import { Subject } from 'rxjs/Subject';
+import { DatagridPagination } from 'clarity-angular';
 
 
 export class Pageable {
     pagination$: Subject<Pagination> = new Subject();
-    currentPage: number = 1;
-    offset: number = 0;
+    currentPage = 1;
+    offset = 0;
     nextOffset: number;
-    perPage: number = 20;
+    perPage = 20;
     total: number;
     pager: DatagridPagination;
 

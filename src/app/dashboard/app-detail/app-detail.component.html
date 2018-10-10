@@ -45,7 +45,10 @@
                       <div class="col-lg-6 col-md-6">
                         <div class="form-group">
                           <label for="webhook_url">Webhook URL</label>
-                          <input type="url" name="webhook_url" id="webhook_url" 
+                          <input type="text" 
+                          name="webhook_url" 
+                          id="webhook_url" 
+                          [pattern]="'(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'"
                           [(ngModel)]="data.webhook_url"
                           placeholder="HTTPS url endpoint" size="60">
                         </div>
