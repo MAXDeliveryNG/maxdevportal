@@ -16,7 +16,7 @@ jobs:
           command: |
             if [[ ((`echo $CIRCLE_BRANCH | grep -c "master"` > 0))]]; then
               yarn build
-            elif [[ ((`echo $CIRCLE_BRANCH | grep -c "staging"` > 0)) ]]; then
+            else 
               yarn run build:staging
             fi
 
