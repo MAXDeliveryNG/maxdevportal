@@ -1,65 +1,83 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: circleci/node:7.10.0-browsers
-        environment:
-          CHROME_BIN: "/usr/bin/google-chrome"
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
+      - image: circleci/node:carbon
 
-    working_directory: ~/maxdevportal
+    working_directory: ~/devportal
 
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+      - run: yarn install
 
-      - run: 
-          name: Setup Build
-          command: yarn install; mkdir -p /tmp/logs
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      
       - run:
-          name: Setup Test Environment
-          command: bash .circleci/setup.sh
-
-      # run tests!
-      - run: yarn test
-
-      - deploy:
-          name: Deploy to staging
+          name: Build client
           command: |
-            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-              git push staging staging >> /tmp/logs/deployment_report 2>&1
-              cat /tmp/logs/deployment_report
-              bash .circleci/slack.sh /tmp/logs/deployment_report deploy
+            if [[ ((`echo $CIRCLE_BRANCH | grep -c "master"` > 0))]]; then
+              yarn build
+            else 
+              yarn run build:staging
             fi
-      - deploy:
-          name: Deploy to production
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              git push production master >> /tmp/logs/deployment_report 2>&1
-              cat /tmp/logs/deployment_report
-              bash .circleci/slack.sh /tmp/logs/deployment_report deploy
-            fi
-      - store_artifacts:
-          path: /tmp/logs
-          destination: logs
 
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./public
+  build_image:
+    docker:
+      - image: circleci/node:carbon
+
+    working_directory: ~/devportal
+
+    steps:
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: ./
+      - run:
+          name: Build and push image
+          command: |
+            if [[ ((`echo $CIRCLE_BRANCH | grep -c "master"` > 0)) || ((`echo $CIRCLE_BRANCH | grep -c "staging"` > 0)) ]]; then
+              export DEPLOY_BRANCH=${CIRCLE_BRANCH}
+              ./deploy/build.sh
+            else
+              echo "Skip Docker push image since it is not the master or staging branch"
+            fi
+
+  deploy:
+    docker:
+      - image: mrfoh/azurecli-helm
+
+    working_directory: ~/devportal
+
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Deploy to AKS
+          command: |
+            if [[ ((`echo $CIRCLE_BRANCH | grep -c "master"` > 0))]]; then
+              echo "Deploying to production"
+              export DEPLOY_TARGET=production
+              ./deploy/cluster-deploy.sh
+            elif [[ ((`echo $CIRCLE_BRANCH | grep -c "staging"` > 0)) ]]; then
+              echo "Deploying to staging"
+              export DEPLOY_TARGET=staging
+              ./deploy/cluster-deploy.sh
+            else
+              echo "Nothing to deploy"
+            fi
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - build
+      - build_image:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - build_image
