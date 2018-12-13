@@ -7,7 +7,7 @@ replicaCount: 1
 # Application image
 image:
   repository: max/devportal
-  tag: staging
+  tag: master
   pullPolicy: Always
 # Image registry credentials
 imageCredentials:
@@ -24,7 +24,7 @@ service:
 # Service environment variables
 env:
   port: 6010
-  api_url: https://sandbox.max.ng/v1
+  api_url: https://api.max.ng/v1
   app_url: 
 # Ingress configuration
 ingress:
@@ -34,11 +34,11 @@ ingress:
      certmanager.k8s.io/cluster-issuer: letsencrypt-prod
   path: /
   hosts:
-    - devs-staging.max.ng
+    - developers.max.ng
   tls:
     - secretName: devportal-tls
       hosts:
-        - devs-staging.max.ng
+        - developers.max.ng
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
